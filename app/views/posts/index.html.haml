@@ -1,0 +1,32 @@
+- if user_signed_in?
+	%p#intro
+		Hello
+		= current_user.name
+		%br/
+		%span
+			What's motivating you ? 
+- else
+	%p#intro
+		Whats your motivation?
+		%br/
+		%span
+			Share your motivating photos with the world
+#posts
+	- @posts.each do |post|
+		
+		.post
+			.post_image
+				= link_to (image_tag post.image.url(:small)), post
+			.post_content
+				.title
+					%h2= link_to post.title, post
+				.data.clearfix
+					%p.username
+						Shared by
+						= post.user.name
+					%p.buttons
+						
+
+= will_paginate @posts,  previous_label: "Newer", next_label: "Older" 							
+							
+
